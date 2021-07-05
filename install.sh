@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt update && sudo apt install ansible, git
+sudo apt install ansible -y
 
 ansible-galaxy install andrewrothstein.kops
 ansible-galaxy install kostyrev.direnv
@@ -9,7 +9,7 @@ cp -r $PWD/ildar.software /home/$USER/.ansible/roles
 
 ansible-playbook software.yml
 
-echo -n "Нужно удалить предустановленные роли из папки .ansible/roles (y/n)? "
+echo -n "Нужно удалить предустановленные роли (y/n)? "
 read answer
 
 if [ "$answer" != "${answer#[Yy]}" ] ;then
