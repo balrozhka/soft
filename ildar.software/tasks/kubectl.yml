@@ -1,0 +1,33 @@
+---
+- name: Add an apt signing key for Kubernetes
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: Adding apt repository for Kubernetes
+  apt_repository:
+    update_cache: yes
+    repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+    state: present
+    filename: kubernetes.list
+
+- name: Install kubectl
+  apt:
+    name:
+      - ca-certificates
+      - kubectl
+
+- name: Copy kubectl-aliases
+  copy:
+    src: ../files/.kubectl_aliases
+    dest: "{{ lookup('env','HOME') }}/"
+
+- name: Install hook from kubectl-aliases
+  lineinfile:
+    name: "{{ lookup('env','HOME') }}/.bashrc"
+    line: '[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases'
+
+- name: Kube-ps1 bashrc
+  script: ./kube-ps1.sh
+  args:
+    executable: /bin/bash

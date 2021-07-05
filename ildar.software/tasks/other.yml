@@ -1,0 +1,8 @@
+---
+- name: Install other soft
+  apt:
+    pkg:
+      - keepassx
+      - awscli
+      - docker
+      - wormhole

@@ -1,0 +1,16 @@
+---
+- name: Install key Pritunl Repo
+  apt_key:
+    keyserver: hkp://keyserver.ubuntu.com
+    id: 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+    state: present
+
+- name: Add Pritunl Repo
+  apt_repository:
+    update_cache: yes
+    repo: deb https://repo.pritunl.com/stable/apt focal main
+    state: present
+
+- name: Install Pritunl-VPN client
+  apt:
+    name: pritunl-client-electron

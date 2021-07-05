@@ -1,0 +1,8 @@
+---
+- name: Installation soft on PC
+  hosts: localhost
+
+  roles:
+    - ildar.software
+    - kostyrev.direnv
+    - andrewrothstein.kops

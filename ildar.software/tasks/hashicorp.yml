@@ -1,0 +1,26 @@
+---
+
+- name: Install dependencies from Hashicorp
+  apt:
+    name:
+      - gnupg 
+      - software-properties-common 
+      - curl
+
+- name: Add HashiCorp apt signing key
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
+
+- name: Add HashiCorp apt Repo
+  apt_repository:
+    update_cache: yes
+    repo: deb  https://apt.releases.hashicorp.com focal main
+    state: present
+
+- name: Install Vault, Terraform and Packer
+  apt:
+    name:
+      - vault
+      - terraform
+      - packer

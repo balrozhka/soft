@@ -1,0 +1,17 @@
+---
+# tasks file for ildar.software
+
+- name: Include Pritunl
+  include: pritunl.yml
+
+- name: Include Hashicorp
+  include: hashicorp.yml
+
+- name: Include Helm
+  include: helm.yml
+
+- name: Include Kubectl
+  include: kubectl.yml
+
+- name: Include Other soft
+  include: other.yml
